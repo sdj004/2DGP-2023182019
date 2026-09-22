@@ -1,15 +1,15 @@
 # 실습 과제 진행
 def move_circle():
-    pass
+    print("CIRCLE")
 
 def move_rectangle():
-    pass
+    print("RECTANGLE")
 
 def move_triangle():
-    pass
+    print("TRIANGLE")
 
-while True: #무한 반복을 만듭니다.
+while True: #함수호출을 합니다.
     move_circle()
     move_rectangle()
     move_triangle()
-    pass
+    
