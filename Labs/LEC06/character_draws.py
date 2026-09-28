@@ -43,6 +43,7 @@ def draw_left(x, y):
         character.draw(x, y)
         update_canvas()
         delay(0.005)
+    return x, y
 
 def draw_bottom(x, y):
     while y > 50:
@@ -57,7 +58,7 @@ def move_rectangle(x, y):
     print("RECTANGLE")
     x, y = draw_right(x, y)
     x, y = draw_top(x, y)
-    draw_left(x, y)
+    x, y = draw_left(x, y)
     draw_bottom(x, y)
 
 
