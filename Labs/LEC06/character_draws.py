@@ -74,6 +74,7 @@ def draw_leftop(x, y):
         character.draw(x, y)
         update_canvas()
         delay(0.005)
+    return x, y
 
 def draw_rightbottom(x, y):
     pass
@@ -81,7 +82,7 @@ def draw_rightbottom(x, y):
 def move_triangle(x, y):
     print("TRIANGLE")
     x, y = draw_right(x, y)
-    draw_leftop(x, y)
+    x, y = draw_leftop(x, y)
     draw_rightbottom(x, y)
     return x, y
 
