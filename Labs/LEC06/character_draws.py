@@ -15,33 +15,39 @@ def move_circle(degree):
         character.draw(x, y)
         update_canvas()
         delay(0.005)
+    return x, y
 
-def draw_right():
+def draw_right(x, y):
+    while x < 750:
+        x += 5
+        clear_canvas()
+        character.draw(x, y)
+        update_canvas()
+        delay(0.005)
+
+def draw_top(x, y):
     pass
 
-def draw_top():
+def draw_left(x, y):
     pass
 
-def draw_left():
-    pass
-
-def draw_bottom():
+def draw_bottom(x, y):
     pass
 
 
-def move_rectangle():
+def move_rectangle(x, y):
     print("RECTANGLE")
-    draw_right()
-    draw_top()
-    draw_left()
-    draw_bottom()
+    draw_right(x, y)
+    draw_top(x, y)
+    draw_left(x, y)
+    draw_bottom(x, y)
 
 
 def move_triangle():
     print("TRIANGLE")
 
 while True: #함수호출을 합니다.
-    move_circle(360)
-    move_rectangle()
+    x, y = move_circle(360)
+    move_rectangle(x, y)
     move_triangle()
     
