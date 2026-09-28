@@ -91,7 +91,7 @@ def move_triangle(x, y):
     print("TRIANGLE")
     x, y = draw_right(x, y)
     x, y = draw_leftop(x, y)
-    draw_leftbottom(x, y)
+    x, y = draw_leftbottom(x, y)
     return x, y
 
 while True: #함수호출을 합니다.
