@@ -36,6 +36,7 @@ def draw_top(x, y):
         delay(0.005)
     return x, y
 
+
 def draw_left(x, y):
     while x > 50:
         x -= 5
@@ -85,12 +86,12 @@ def draw_leftbottom(x, y):
     print("leftbottom")
 
     xgap = x
-    ygap = y
+    ygap = y - 50
     
     xmove = xgap / 100
     ymove = ygap / 100
     
-    while x > 0 or y > 0:
+    for _ in range(100):
         x -= xmove
         y -= ymove
         clear_canvas()
@@ -110,4 +111,6 @@ while True: #함수호출을 합니다.
     x, y = move_circle(360)
     x, y = move_rectangle(x, y)
     x, y = move_triangle(x, y)
+    x, y = draw_right(x, y)
+
     
