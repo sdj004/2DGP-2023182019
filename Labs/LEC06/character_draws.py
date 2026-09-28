@@ -2,7 +2,7 @@ from pico2d import *
 import math
 
 open_canvas(800, 600)
-r = 100
+r = 300
 character = load_image("C:\\PythonStudy\\2D_gameProgramming\\2DGP-2023182019\\LEC05\\character.png")
 def move_circle(degree):
     print("CIRCLE")
