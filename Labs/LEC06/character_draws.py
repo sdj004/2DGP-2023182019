@@ -115,10 +115,14 @@ def move_triangle(x, y):
     x, y = draw_leftbottom(x, y)
     return x, y
 
+def Set_circle_pos(x, y):
+    return x, y
+
 while True: #함수호출을 합니다.
     x, y = move_circle(360)
     x, y = move_rectangle(x, y)
     x, y = move_triangle(x, y)
     x, y = draw_right(x, y)
     x, y = draw_half_top(x, y)
+    x, y = Set_circle_pos(x, y)
     
