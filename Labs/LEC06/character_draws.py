@@ -16,10 +16,25 @@ def move_circle(degree):
         update_canvas()
         delay(0.005)
 
+def draw_right():
+    pass
+
+def draw_top():
+    pass
+
+def draw_left():
+    pass
+
+def draw_bottom():
+    pass
 
 
 def move_rectangle():
     print("RECTANGLE")
+    draw_right()
+    draw_top()
+    draw_left()
+    draw_bottom()
 
 
 def move_triangle():
