@@ -37,7 +37,13 @@ def draw_top(x, y):
     return x, y
 
 def draw_half_top(x, y):
-    pass
+    while y < 300:
+        y += 5
+        clear_canvas()
+        character.draw(x, y)
+        update_canvas()
+        delay(0.005)
+    return x, y
 
 def draw_left(x, y):
     while x > 50:
