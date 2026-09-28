@@ -62,12 +62,14 @@ def move_rectangle(x, y):
     x, y = draw_left(x, y)
     x, y = draw_bottom(x, y)
 
+    return x, y
+
 
 def move_triangle():
     print("TRIANGLE")
 
 while True: #함수호출을 합니다.
     x, y = move_circle(360)
-    move_rectangle(x, y)
+    x, y = move_rectangle(x, y)
     move_triangle()
     
