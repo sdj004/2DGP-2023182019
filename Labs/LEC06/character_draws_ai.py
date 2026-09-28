@@ -27,12 +27,11 @@ def circle_path(character_width, character_height):
 def polygon_path(vertices, steps_per_edge=90):
 	for index, start in enumerate(vertices):
 		end = vertices[(index + 1) % len(vertices)]
-		for step in range(steps_per_edge):
+		for step in range(steps_per_edge + 1):
 			ratio = step / steps_per_edge
 			x = start[0] + (end[0] - start[0]) * ratio
 			y = start[1] + (end[1] - start[1]) * ratio
 			yield x, y
-	yield vertices[0]
 
 
 def rectangle_path(character_width, character_height):
