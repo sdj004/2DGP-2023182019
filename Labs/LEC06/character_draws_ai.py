@@ -58,9 +58,9 @@ def triangle_path(character_width, character_height):
 	)
 	half_height = radius * math.sqrt(3) / 2
 	vertices = [
-		(center_x + radius, center_y),
 		(center_x - radius / 2, center_y + half_height),
 		(center_x - radius / 2, center_y - half_height),
+		(center_x + radius, center_y),
 	]
 	yield from polygon_path(vertices)
 
