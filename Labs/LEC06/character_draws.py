@@ -66,16 +66,24 @@ def move_rectangle(x, y):
 
 
 def draw_leftop(x, y):
-    pass
+    print("lefttop")
+    while x > 400 and y < 600:
+        x -= 5
+        y += 10
+        clear_canvas()
+        character.draw(x, y)
+        update_canvas()
+        delay(0.005)
 
 def draw_rightbottom(x, y):
     pass
 
 def move_triangle(x, y):
     print("TRIANGLE")
-    draw_right(x, y)
+    x, y = draw_right(x, y)
     draw_leftop(x, y)
     draw_rightbottom(x, y)
+    return x, y
 
 while True: #함수호출을 합니다.
     x, y = move_circle(360)
