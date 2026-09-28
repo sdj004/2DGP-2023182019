@@ -116,6 +116,13 @@ def move_triangle(x, y):
     return x, y
 
 def Set_circle_pos(x, y):
+    while x > 700:
+        x -= 5
+        clear_canvas()
+        character.draw(x, y)
+        update_canvas()
+        delay(0.005)
+
     return x, y
 
 while True: #함수호출을 합니다.
