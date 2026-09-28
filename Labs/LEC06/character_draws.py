@@ -83,9 +83,16 @@ def draw_leftop(x, y):
 
 def draw_leftbottom(x, y):
     print("leftbottom")
+
+    xgap = x
+    ygap = y
+    
+    xmove = xgap / 100
+    ymove = ygap / 100
+    
     while x > 0 or y > 0:
-        x -= 5
-        y -= 10
+        x -= xmove
+        y -= ymove
         clear_canvas()
         character.draw(x, y)
         update_canvas()
