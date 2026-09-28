@@ -65,20 +65,20 @@ def move_rectangle(x, y):
     return x, y
 
 
-def draw_leftop():
+def draw_leftop(x, y):
     pass
 
-def draw_rightbottom():
+def draw_rightbottom(x, y):
     pass
 
-def move_triangle():
+def move_triangle(x, y):
     print("TRIANGLE")
-    draw_right()
-    draw_leftop()
-    draw_rightbottom()
+    draw_right(x, y)
+    draw_leftop(x, y)
+    draw_rightbottom(x, y)
 
 while True: #함수호출을 합니다.
     x, y = move_circle(360)
     x, y = move_rectangle(x, y)
-    move_triangle()
+    x, y = move_triangle(x, y)
     
