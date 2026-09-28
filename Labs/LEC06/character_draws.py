@@ -67,9 +67,14 @@ def move_rectangle(x, y):
 
 def draw_leftop(x, y):
     print("lefttop")
-    while x > 400 or y < 580:
-        if x > 400 : x -= 5
-        if y < 580 : y += 10
+    xgap = x - 400
+    ygap = 600 - y
+
+    xmove = xgap / 100
+    ymove = ygap / 100
+    for _ in range(100):
+        x -= xmove
+        y += ymove
         clear_canvas()
         character.draw(x, y)
         update_canvas()
@@ -78,7 +83,7 @@ def draw_leftop(x, y):
 
 def draw_leftbottom(x, y):
     print("leftbottom")
-    while x > 0 and y > 0:
+    while x > 0 or y > 0:
         x -= 5
         y -= 10
         clear_canvas()
