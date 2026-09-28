@@ -35,7 +35,12 @@ def draw_top(x, y):
         delay(0.005)
 
 def draw_left(x, y):
-    pass
+    while x > 50:
+        x -= 5
+        clear_canvas()
+        character.draw(x, y)
+        update_canvas()
+        delay(0.005)
 
 def draw_bottom(x, y):
     pass
