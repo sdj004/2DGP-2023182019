@@ -65,8 +65,17 @@ def move_rectangle(x, y):
     return x, y
 
 
+def draw_leftop():
+    pass
+
+def draw_rightbottom():
+    pass
+
 def move_triangle():
     print("TRIANGLE")
+    draw_right()
+    draw_leftop()
+    draw_rightbottom()
 
 while True: #함수호출을 합니다.
     x, y = move_circle(360)
