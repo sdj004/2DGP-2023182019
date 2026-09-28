@@ -24,6 +24,7 @@ def draw_right(x, y):
         character.draw(x, y)
         update_canvas()
         delay(0.005)
+    return x, y
         
 
 def draw_top(x, y):
@@ -53,7 +54,7 @@ def draw_bottom(x, y):
 
 def move_rectangle(x, y):
     print("RECTANGLE")
-    draw_right(x, y)
+    x, y = draw_right(x, y)
     draw_top(x, y)
     draw_left(x, y)
     draw_bottom(x, y)
