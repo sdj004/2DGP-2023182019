@@ -61,6 +61,7 @@ frame_index = 0
 running = True
 go_right = True
 go_left = False
+fast = False
 x = 300
 y = 200
 
