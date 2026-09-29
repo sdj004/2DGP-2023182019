@@ -24,15 +24,23 @@ ROW2_FRAME_HEIGHT = 49
 ROW2_START_Y = 62           # pico2d 좌하단 기준 Y 오프셋
 
 # -------------------------------------------------------------
-# [행 3: 아래에서 3번째 행 애니메이션 설정] - 총 9 프레임 (새로 추가)
+# [행 3: 아래에서 3번째 행 애니메이션 설정] - 총 9 프레임
 # -------------------------------------------------------------
 ROW3_FRAME_COUNT = 9
 ROW3_FRAME_WIDTH = 46
 ROW3_FRAME_HEIGHT = 40
 ROW3_START_Y = 125          # pico2d 좌하단 기준 Y 오프셋
 
+# -------------------------------------------------------------
+# [행 4: 아래에서 4번째 행 애니메이션 설정] - 총 12 프레임 (새로 추가)
+# -------------------------------------------------------------
+ROW4_FRAME_COUNT = 12
+ROW4_FRAME_WIDTH = 33
+ROW4_FRAME_HEIGHT = 51
+ROW4_START_Y = 169          # pico2d 좌하단 기준 Y 오프셋
+
 # 애니메이션 제어 변수
-current_row = 1             # 현재 재생 중인 행 (1 -> 2 -> 3 순서로 전환)
+current_row = 1             # 현재 재생 중인 행 (1 -> 2 -> 3 -> 4 순서로 전환)
 frame = 0                   # 현재 프레임 인덱스
 running = True
 
@@ -87,7 +95,20 @@ while running:
         frame += 1
         if frame >= ROW3_FRAME_COUNT:
             frame = 0
-            current_row = 1  # Row 3 종료 -> 다시 Row 1로 순환 연결
+            current_row = 4  # Row 3 종료 -> Row 4로 이동
+
+    elif current_row == 4:
+        # Row 4 (아래에서 4번째 행) 렌더링
+        source_x = frame * ROW4_FRAME_WIDTH
+        source_y = ROW4_START_Y
+        
+        # 2배 확대(66x102)
+        sprite_sheet.clip_draw(source_x, source_y, ROW4_FRAME_WIDTH, ROW4_FRAME_HEIGHT, 300, 200, 66, 102)
+        
+        frame += 1
+        if frame >= ROW4_FRAME_COUNT:
+            frame = 0
+            current_row = 1  # Row 4 종료 -> 다시 Row 1로 순환 연결
 
     update_canvas()
     
