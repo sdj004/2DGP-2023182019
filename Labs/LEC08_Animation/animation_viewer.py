@@ -112,7 +112,8 @@ while running:
     draw_w, draw_h = get_scaled_draw_size(sw, sh)
 
     # (300, 200) 피벗 고정 렌더링
-    sprite_sheet.clip_draw(sx, sy, sw, sh, x, y, draw_w, draw_h)
+    if go_right : sprite_sheet.clip_draw(sx, sy, sw, sh, x, y, draw_w, draw_h)
+    else : sprite_sheet.clip_composite_draw(sx, sy, sw, sh, 0, "h", x, y, draw_w, draw_h)
 
     # 프레임 진행
     frame_index += 1
