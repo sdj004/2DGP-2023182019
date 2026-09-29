@@ -90,6 +90,11 @@ while running:
         go_right =False
         go_left = True
     
+    if go_left and x > 100:
+            x -= 10
+    else:
+        go_right = True
+        go_left = False
 
     # 이벤트 처리
     events = get_events()
