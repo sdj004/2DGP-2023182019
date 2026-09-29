@@ -86,14 +86,16 @@ while running:
     # 캔버스 검정색 클리어
     clear_canvas_with_color(0, 0, 0)
     if go_right and x < 500:
-        if fast: x+=10
+        if fast: 
+            x+= 10
         x += 10
     else:
         go_right =False
         go_left = True
     
     if go_left and x > 100:
-        if fast: x-= 10
+        if fast: 
+            x-= 10
         x -= 10
     else:
         go_right = True
@@ -125,6 +127,8 @@ while running:
         repeat += 1
         if repeat >= 5 : 
             row_index = (row_index + 1) % len(ANIMATION_ROWS)
+            if row_index == 2 : fast = True
+            else: fast = False
             repeat = 0
             delay(1)
 
