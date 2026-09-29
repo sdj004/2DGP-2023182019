@@ -4,7 +4,7 @@ from pico2d import *
 open_canvas(600, 400)
 clear_canvas()
 
-# 2. 지정해주신 절대 경로로 이미지 로드
+# 2. 절대 경로로 이미지 로드
 sprite_sheet = load_image('C:\\PythonStudy\\2D_gameProgramming\\2DGP-2023182019\\Labs\\LEC08_Animation\\dongkeykong.png')
 
 # -------------------------------------------------------------
@@ -32,15 +32,23 @@ ROW3_FRAME_HEIGHT = 40
 ROW3_START_Y = 125          # pico2d 좌하단 기준 Y 오프셋
 
 # -------------------------------------------------------------
-# [행 4: 아래에서 4번째 행 애니메이션 설정] - 총 12 프레임 (새로 추가)
+# [행 4: 아래에서 4번째 행 애니메이션 설정] - 총 12 프레임
 # -------------------------------------------------------------
 ROW4_FRAME_COUNT = 12
 ROW4_FRAME_WIDTH = 33
 ROW4_FRAME_HEIGHT = 51
 ROW4_START_Y = 169          # pico2d 좌하단 기준 Y 오프셋
 
+# -------------------------------------------------------------
+# [행 5: 아래에서 5번째 행 애니메이션 설정] - 총 12 프레임 (새로 추가)
+# -------------------------------------------------------------
+ROW5_FRAME_COUNT = 12
+ROW5_FRAME_WIDTH = 38
+ROW5_FRAME_HEIGHT = 50
+ROW5_START_Y = 230          # pico2d 좌하단 기준 Y 오프셋
+
 # 애니메이션 제어 변수
-current_row = 1             # 현재 재생 중인 행 (1 -> 2 -> 3 -> 4 순서로 전환)
+current_row = 1             # 현재 재생 중인 행 (1 -> 2 -> 3 -> 4 -> 5 순서로 전환)
 frame = 0                   # 현재 프레임 인덱스
 running = True
 
@@ -63,7 +71,6 @@ while running:
         source_x = frame * ROW1_FRAME_WIDTH
         source_y = ROW1_START_Y
         
-        # 2배 확대(82x82)
         sprite_sheet.clip_draw(source_x, source_y, ROW1_FRAME_WIDTH, ROW1_FRAME_HEIGHT, 300, 200, 82, 82)
         
         frame += 1
@@ -76,7 +83,6 @@ while running:
         source_x = frame * ROW2_FRAME_WIDTH
         source_y = ROW2_START_Y
         
-        # 2배 확대(140x98)
         sprite_sheet.clip_draw(source_x, source_y, ROW2_FRAME_WIDTH, ROW2_FRAME_HEIGHT, 300, 200, 140, 98)
         
         frame += 1
@@ -89,7 +95,6 @@ while running:
         source_x = frame * ROW3_FRAME_WIDTH
         source_y = ROW3_START_Y
         
-        # 2배 확대(92x80)
         sprite_sheet.clip_draw(source_x, source_y, ROW3_FRAME_WIDTH, ROW3_FRAME_HEIGHT, 300, 200, 92, 80)
         
         frame += 1
@@ -102,13 +107,25 @@ while running:
         source_x = frame * ROW4_FRAME_WIDTH
         source_y = ROW4_START_Y
         
-        # 2배 확대(66x102)
         sprite_sheet.clip_draw(source_x, source_y, ROW4_FRAME_WIDTH, ROW4_FRAME_HEIGHT, 300, 200, 66, 102)
         
         frame += 1
         if frame >= ROW4_FRAME_COUNT:
             frame = 0
-            current_row = 1  # Row 4 종료 -> 다시 Row 1로 순환 연결
+            current_row = 5  # Row 4 종료 -> Row 5로 이동
+
+    elif current_row == 5:
+        # Row 5 (아래에서 5번째 행) 렌더링
+        source_x = frame * ROW5_FRAME_WIDTH
+        source_y = ROW5_START_Y
+        
+        # 2배 확대(76x100)
+        sprite_sheet.clip_draw(source_x, source_y, ROW5_FRAME_WIDTH, ROW5_FRAME_HEIGHT, 300, 200, 76, 100)
+        
+        frame += 1
+        if frame >= ROW5_FRAME_COUNT:
+            frame = 0
+            current_row = 1  # Row 5 종료 -> 다시 Row 1로 순환 연결
 
     update_canvas()
     
