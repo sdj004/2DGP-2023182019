@@ -84,7 +84,11 @@ def clear_canvas_with_color(r=0, g=0, b=0):
 while running:
     # 캔버스 검정색 클리어
     clear_canvas_with_color(0, 0, 0)
-
+    if go_right and x < 500:
+        x += 10
+    else:
+        go_right =False
+        go_left = True
     
 
     # 이벤트 처리
@@ -103,7 +107,7 @@ while running:
     draw_w, draw_h = get_scaled_draw_size(sw, sh)
 
     # (300, 200) 피벗 고정 렌더링
-    sprite_sheet.clip_draw(sx, sy, sw, sh, 300, 200, draw_w, draw_h)
+    sprite_sheet.clip_draw(sx, sy, sw, sh, x, y, draw_w, draw_h)
 
     # 프레임 진행
     frame_index += 1
