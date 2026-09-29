@@ -62,6 +62,7 @@ running = True
 go_right = True
 go_left = False
 fast = False
+stop = True
 x = 300
 y = 200
 
