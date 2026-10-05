@@ -9,9 +9,12 @@ from pico2d import (
     update_canvas,
 )
 
+CANVAS_WIDTH = 1200
+CANVAS_HEIGHT = 800
+
 
 def main():
-    open_canvas(1200, 800)
+    open_canvas(CANVAS_WIDTH, CANVAS_HEIGHT)
     running = True
 
     while running:
