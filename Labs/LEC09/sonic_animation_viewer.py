@@ -38,6 +38,85 @@ FIRST_ACTION_FRAMES = (
     frame_rect(302, 51, 29, 26),
 )
 
+ADDITIONAL_ACTION_FRAMES = (
+    (
+        frame_rect(8, 80, 26, 37),
+        frame_rect(37, 80, 27, 37),
+        frame_rect(65, 80, 31, 38),
+        frame_rect(97, 80, 37, 37),
+        frame_rect(135, 80, 32, 35),
+        frame_rect(170, 79, 32, 38),
+        frame_rect(206, 79, 26, 38),
+        frame_rect(238, 80, 24, 37),
+        frame_rect(263, 80, 30, 37),
+        frame_rect(295, 80, 36, 37),
+        frame_rect(334, 80, 32, 36),
+        frame_rect(370, 79, 29, 38),
+    ),
+    (
+        frame_rect(1, 124, 33, 40),
+        frame_rect(39, 124, 35, 39),
+        frame_rect(89, 125, 35, 38),
+        frame_rect(130, 121, 34, 42),
+        frame_rect(181, 122, 34, 41),
+        frame_rect(228, 122, 33, 40),
+    ),
+    (
+        frame_rect(1, 169, 29, 30),
+        frame_rect(35, 167, 29, 31),
+        frame_rect(67, 169, 30, 29),
+        frame_rect(98, 169, 31, 29),
+        frame_rect(131, 168, 29, 30),
+        frame_rect(162, 168, 29, 31),
+        frame_rect(193, 170, 30, 29),
+        frame_rect(230, 170, 31, 29),
+    ),
+    (
+        frame_rect(1, 239, 29, 35),
+        frame_rect(36, 239, 30, 35),
+        frame_rect(74, 239, 31, 35),
+        frame_rect(111, 238, 31, 36),
+        frame_rect(149, 239, 30, 35),
+        frame_rect(186, 238, 31, 36),
+    ),
+    (
+        frame_rect(1, 283, 29, 35),
+        frame_rect(36, 283, 30, 35),
+        frame_rect(72, 286, 39, 31),
+        frame_rect(123, 285, 39, 32),
+        frame_rect(172, 286, 39, 31),
+        frame_rect(218, 285, 38, 32),
+    ),
+    (
+        frame_rect(1, 326, 24, 45),
+        frame_rect(31, 327, 29, 44),
+        frame_rect(65, 327, 20, 44),
+        frame_rect(90, 327, 25, 43),
+        frame_rect(119, 327, 25, 43),
+        frame_rect(149, 327, 20, 44),
+    ),
+    (
+        frame_rect(184, 341, 40, 28),
+        frame_rect(232, 341, 39, 27),
+    ),
+    (
+        frame_rect(1, 379, 27, 38),
+        frame_rect(31, 379, 31, 36),
+        frame_rect(64, 379, 31, 36),
+        frame_rect(99, 377, 33, 38),
+        frame_rect(136, 379, 32, 36),
+        frame_rect(176, 379, 33, 36),
+        frame_rect(217, 379, 33, 36),
+        frame_rect(254, 378, 33, 36),
+    ),
+    (
+        frame_rect(6, 429, 34, 40),
+        frame_rect(49, 426, 34, 43),
+        frame_rect(96, 427, 23, 39),
+        frame_rect(125, 427, 23, 39),
+    ),
+)
+
 
 def main():
     try:
