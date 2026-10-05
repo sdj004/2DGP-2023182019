@@ -16,6 +16,7 @@ from pico2d import (
 CANVAS_WIDTH = 1200
 CANVAS_HEIGHT = 800
 FRAME_INTERVAL = 0.1
+ACTION_REPEAT_COUNT = 5
 SHEET_WIDTH = 399
 SHEET_HEIGHT = 525
 SPRITE_SHEET_PATH = Path(__file__).resolve().with_name("sonic-sprite.png")
@@ -169,6 +170,9 @@ def main():
         update_canvas()
         if frame_index == len(frames) - 1:
             repeat_count += 1
+            if repeat_count == ACTION_REPEAT_COUNT:
+                animation_index = (animation_index + 1) % len(ANIMATIONS)
+                repeat_count = 0
         frame_index = (frame_index + 1) % len(frames)
         delay(FRAME_INTERVAL)
 
