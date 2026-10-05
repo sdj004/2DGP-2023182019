@@ -17,6 +17,9 @@ from pico2d import (
 
 CANVAS_WIDTH = 1200
 CANVAS_HEIGHT = 800
+CANVAS_MARGIN = 2
+CENTER_X = CANVAS_WIDTH // 2
+CENTER_Y = CANVAS_HEIGHT // 2
 FRAME_INTERVAL = 0.1
 ACTION_REPEAT_COUNT = 5
 ACTION_TRANSITION_DELAY = 1.0
@@ -33,7 +36,11 @@ def frame_rect(x: int, top: int, width: int, height: int) -> Frame:
 def get_draw_size(source_width: int, source_height: int) -> tuple[int, int]:
     target_area = CANVAS_WIDTH * CANVAS_HEIGHT * 0.2
     scale = sqrt(target_area / (source_width * source_height))
-    scale = min(scale, CANVAS_WIDTH / source_width, CANVAS_HEIGHT / source_height)
+    scale = min(
+        scale,
+        (CANVAS_WIDTH - 2 * CANVAS_MARGIN) / source_width,
+        (CANVAS_HEIGHT - 2 * CANVAS_MARGIN) / source_height,
+    )
     return max(1, int(source_width * scale)), max(1, int(source_height * scale))
 
 
@@ -176,8 +183,8 @@ def main():
             source_y,
             frame_width,
             frame_height,
-            CANVAS_WIDTH // 2,
-            CANVAS_HEIGHT // 2,
+            CENTER_X,
+            CENTER_Y,
             draw_width,
             draw_height,
         )
