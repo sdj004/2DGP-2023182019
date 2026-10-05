@@ -1,4 +1,5 @@
 from pathlib import Path
+import time
 
 from pico2d import (
     SDL_KEYDOWN,
@@ -17,6 +18,7 @@ CANVAS_WIDTH = 1200
 CANVAS_HEIGHT = 800
 FRAME_INTERVAL = 0.1
 ACTION_REPEAT_COUNT = 5
+ACTION_TRANSITION_DELAY = 1.0
 SHEET_WIDTH = 399
 SHEET_HEIGHT = 525
 SPRITE_SHEET_PATH = Path(__file__).resolve().with_name("sonic-sprite.png")
@@ -148,6 +150,7 @@ def main():
     animation_index = 0
     frame_index = 0
     repeat_count = 0
+    transition_deadline = None
 
     while running:
         for event in get_events():
@@ -168,12 +171,21 @@ def main():
             CANVAS_HEIGHT // 2,
         )
         update_canvas()
-        if frame_index == len(frames) - 1:
+        now = time.monotonic()
+        if transition_deadline is not None:
+            if now >= transition_deadline:
+                animation_index = (animation_index + 1) % len(ANIMATIONS)
+                frame_index = 0
+                repeat_count = 0
+                transition_deadline = None
+        elif frame_index == len(frames) - 1:
             repeat_count += 1
             if repeat_count == ACTION_REPEAT_COUNT:
-                animation_index = (animation_index + 1) % len(ANIMATIONS)
-                repeat_count = 0
-        frame_index = (frame_index + 1) % len(frames)
+                transition_deadline = now + ACTION_TRANSITION_DELAY
+            else:
+                frame_index = 0
+        else:
+            frame_index += 1
         delay(FRAME_INTERVAL)
 
     close_canvas()
