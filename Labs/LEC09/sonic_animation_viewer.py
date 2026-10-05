@@ -14,7 +14,17 @@ from pico2d import (
 
 CANVAS_WIDTH = 1200
 CANVAS_HEIGHT = 800
+SHEET_WIDTH = 399
+SHEET_HEIGHT = 525
 SPRITE_SHEET_PATH = Path(__file__).resolve().with_name("sonic-sprite.png")
+Frame = tuple[int, int, int, int]
+
+
+def frame_rect(x: int, top: int, width: int, height: int) -> Frame:
+    return (x, SHEET_HEIGHT - top - height, width, height)
+
+
+FIRST_ACTION_FRAMES = (frame_rect(1, 39, 29, 39),)
 
 
 def main():
@@ -36,11 +46,12 @@ def main():
                 running = False
 
         clear_canvas()
+        source_x, source_y, frame_width, frame_height = FIRST_ACTION_FRAMES[0]
         sprite_sheet.clip_draw(
-            1,
-            447,
-            29,
-            39,
+            source_x,
+            source_y,
+            frame_width,
+            frame_height,
             CANVAS_WIDTH // 2,
             CANVAS_HEIGHT // 2,
         )
