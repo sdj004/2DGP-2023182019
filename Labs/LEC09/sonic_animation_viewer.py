@@ -117,6 +117,20 @@ ADDITIONAL_ACTION_FRAMES = (
     ),
 )
 
+Animation = tuple[str, tuple[Frame, ...]]
+ANIMATIONS: tuple[Animation, ...] = (
+    ("동작 1", FIRST_ACTION_FRAMES),
+    ("동작 2", ADDITIONAL_ACTION_FRAMES[0]),
+    ("동작 3", ADDITIONAL_ACTION_FRAMES[1]),
+    ("동작 4", ADDITIONAL_ACTION_FRAMES[2]),
+    ("동작 5", ADDITIONAL_ACTION_FRAMES[3]),
+    ("동작 6", ADDITIONAL_ACTION_FRAMES[4]),
+    ("동작 7", ADDITIONAL_ACTION_FRAMES[5]),
+    ("동작 8", ADDITIONAL_ACTION_FRAMES[6]),
+    ("동작 9", ADDITIONAL_ACTION_FRAMES[7]),
+    ("동작 10", ADDITIONAL_ACTION_FRAMES[8]),
+)
+
 
 def main():
     try:
