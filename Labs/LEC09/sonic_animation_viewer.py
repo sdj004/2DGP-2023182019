@@ -167,6 +167,8 @@ def main():
             CANVAS_HEIGHT // 2,
         )
         update_canvas()
+        if frame_index == len(frames) - 1:
+            repeat_count += 1
         frame_index = (frame_index + 1) % len(frames)
         delay(FRAME_INTERVAL)
 
