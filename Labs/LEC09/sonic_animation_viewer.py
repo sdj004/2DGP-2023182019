@@ -6,6 +6,7 @@ from pico2d import (
     SDLK_ESCAPE,
     clear_canvas,
     close_canvas,
+    delay,
     get_events,
     load_image,
     open_canvas,
@@ -14,6 +15,7 @@ from pico2d import (
 
 CANVAS_WIDTH = 1200
 CANVAS_HEIGHT = 800
+FRAME_INTERVAL = 0.1
 SHEET_WIDTH = 399
 SHEET_HEIGHT = 525
 SPRITE_SHEET_PATH = Path(__file__).resolve().with_name("sonic-sprite.png")
@@ -165,6 +167,7 @@ def main():
             CANVAS_HEIGHT // 2,
         )
         update_canvas()
+        delay(FRAME_INTERVAL)
 
     close_canvas()
 
