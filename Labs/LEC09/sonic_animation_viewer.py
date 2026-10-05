@@ -18,6 +18,7 @@ from pico2d import (
 CANVAS_WIDTH = 1200
 CANVAS_HEIGHT = 800
 CANVAS_MARGIN = 2
+CHARACTER_SIZE_FACTOR = 0.5
 CENTER_X = CANVAS_WIDTH // 2
 CENTER_Y = CANVAS_HEIGHT // 2
 FRAME_INTERVAL = 0.1
@@ -35,7 +36,7 @@ def frame_rect(x: int, top: int, width: int, height: int) -> Frame:
 
 def get_draw_size(source_width: int, source_height: int) -> tuple[int, int]:
     target_area = CANVAS_WIDTH * CANVAS_HEIGHT * 0.2
-    scale = sqrt(target_area / (source_width * source_height))
+    scale = sqrt(target_area / (source_width * source_height)) * CHARACTER_SIZE_FACTOR
     scale = min(
         scale,
         (CANVAS_WIDTH - 2 * CANVAS_MARGIN) / source_width,
