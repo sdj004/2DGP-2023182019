@@ -142,6 +142,9 @@ def main():
 
     open_canvas(CANVAS_WIDTH, CANVAS_HEIGHT)
     running = True
+    animation_index = 0
+    frame_index = 0
+    repeat_count = 0
 
     while running:
         for event in get_events():
@@ -151,7 +154,8 @@ def main():
                 running = False
 
         clear_canvas()
-        source_x, source_y, frame_width, frame_height = FIRST_ACTION_FRAMES[0]
+        _, frames = ANIMATIONS[animation_index]
+        source_x, source_y, frame_width, frame_height = frames[frame_index]
         sprite_sheet.clip_draw(
             source_x,
             source_y,
