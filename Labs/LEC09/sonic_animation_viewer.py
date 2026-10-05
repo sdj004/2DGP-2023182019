@@ -7,6 +7,7 @@ from pico2d import (
     clear_canvas,
     close_canvas,
     get_events,
+    load_image,
     open_canvas,
     update_canvas,
 )
@@ -17,6 +18,13 @@ SPRITE_SHEET_PATH = Path(__file__).resolve().with_name("sonic-sprite.png")
 
 
 def main():
+    try:
+        sprite_sheet = load_image(str(SPRITE_SHEET_PATH))
+    except Exception as error:
+        raise SystemExit(
+            f"스프라이트 시트를 불러올 수 없습니다: {SPRITE_SHEET_PATH}\n원인: {error}"
+        ) from error
+
     open_canvas(CANVAS_WIDTH, CANVAS_HEIGHT)
     running = True
 
