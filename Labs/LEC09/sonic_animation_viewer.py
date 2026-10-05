@@ -1,4 +1,5 @@
 from pathlib import Path
+from math import sqrt
 import time
 
 from pico2d import (
@@ -27,6 +28,13 @@ Frame = tuple[int, int, int, int]
 
 def frame_rect(x: int, top: int, width: int, height: int) -> Frame:
     return (x, SHEET_HEIGHT - top - height, width, height)
+
+
+def get_draw_size(source_width: int, source_height: int) -> tuple[int, int]:
+    target_area = CANVAS_WIDTH * CANVAS_HEIGHT * 0.2
+    scale = sqrt(target_area / (source_width * source_height))
+    scale = min(scale, CANVAS_WIDTH / source_width, CANVAS_HEIGHT / source_height)
+    return max(1, int(source_width * scale)), max(1, int(source_height * scale))
 
 
 FIRST_ACTION_FRAMES = (
@@ -162,6 +170,7 @@ def main():
         clear_canvas()
         _, frames = ANIMATIONS[animation_index]
         source_x, source_y, frame_width, frame_height = frames[frame_index]
+        draw_width, draw_height = get_draw_size(frame_width, frame_height)
         sprite_sheet.clip_draw(
             source_x,
             source_y,
@@ -169,6 +178,8 @@ def main():
             frame_height,
             CANVAS_WIDTH // 2,
             CANVAS_HEIGHT // 2,
+            draw_width,
+            draw_height,
         )
         update_canvas()
         now = time.monotonic()
