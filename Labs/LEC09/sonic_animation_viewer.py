@@ -152,7 +152,27 @@ ANIMATIONS: tuple[Animation, ...] = (
 )
 
 
+def validate_animations() -> None:
+    if not ANIMATIONS:
+        raise ValueError("재생할 애니메이션이 없습니다.")
+
+    for name, frames in ANIMATIONS:
+        if not frames:
+            raise ValueError(f"애니메이션에 프레임이 없습니다: {name}")
+        for x, y, width, height in frames:
+            if (
+                x < 0
+                or y < 0
+                or width <= 0
+                or height <= 0
+                or x + width > SHEET_WIDTH
+                or y + height > SHEET_HEIGHT
+            ):
+                raise ValueError(f"프레임 영역이 스프라이트 시트 범위를 벗어났습니다: {name}")
+
+
 def main():
+    validate_animations()
     open_canvas(CANVAS_WIDTH, CANVAS_HEIGHT)
     try:
         try:
@@ -161,6 +181,12 @@ def main():
             raise SystemExit(
                 f"스프라이트 시트를 불러올 수 없습니다: {SPRITE_SHEET_PATH}\n원인: {error}"
             ) from error
+        if sprite_sheet.w != SHEET_WIDTH or sprite_sheet.h != SHEET_HEIGHT:
+            raise SystemExit(
+                f"스프라이트 시트 크기가 예상과 다릅니다: "
+                f"{sprite_sheet.w} x {sprite_sheet.h} "
+                f"(예상: {SHEET_WIDTH} x {SHEET_HEIGHT})"
+            )
 
         running = True
         animation_index = 0
