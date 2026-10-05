@@ -153,60 +153,61 @@ ANIMATIONS: tuple[Animation, ...] = (
 
 
 def main():
-    try:
-        sprite_sheet = load_image(str(SPRITE_SHEET_PATH))
-    except Exception as error:
-        raise SystemExit(
-            f"스프라이트 시트를 불러올 수 없습니다: {SPRITE_SHEET_PATH}\n원인: {error}"
-        ) from error
-
     open_canvas(CANVAS_WIDTH, CANVAS_HEIGHT)
-    running = True
-    animation_index = 0
-    frame_index = 0
-    repeat_count = 0
-    transition_deadline = None
+    try:
+        try:
+            sprite_sheet = load_image(str(SPRITE_SHEET_PATH))
+        except Exception as error:
+            raise SystemExit(
+                f"스프라이트 시트를 불러올 수 없습니다: {SPRITE_SHEET_PATH}\n원인: {error}"
+            ) from error
 
-    while running:
-        for event in get_events():
-            if event.type == SDL_QUIT:
-                running = False
-            elif event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE:
-                running = False
+        running = True
+        animation_index = 0
+        frame_index = 0
+        repeat_count = 0
+        transition_deadline = None
 
-        clear_canvas()
-        _, frames = ANIMATIONS[animation_index]
-        source_x, source_y, frame_width, frame_height = frames[frame_index]
-        draw_width, draw_height = get_draw_size(frame_width, frame_height)
-        sprite_sheet.clip_draw(
-            source_x,
-            source_y,
-            frame_width,
-            frame_height,
-            CENTER_X,
-            CENTER_Y,
-            draw_width,
-            draw_height,
-        )
-        update_canvas()
-        now = time.monotonic()
-        if transition_deadline is not None:
-            if now >= transition_deadline:
-                animation_index = (animation_index + 1) % len(ANIMATIONS)
-                frame_index = 0
-                repeat_count = 0
-                transition_deadline = None
-        elif frame_index == len(frames) - 1:
-            repeat_count += 1
-            if repeat_count == ACTION_REPEAT_COUNT:
-                transition_deadline = now + ACTION_TRANSITION_DELAY
+        while running:
+            for event in get_events():
+                if event.type == SDL_QUIT:
+                    running = False
+                elif event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE:
+                    running = False
+
+            clear_canvas()
+            _, frames = ANIMATIONS[animation_index]
+            source_x, source_y, frame_width, frame_height = frames[frame_index]
+            draw_width, draw_height = get_draw_size(frame_width, frame_height)
+            sprite_sheet.clip_draw(
+                source_x,
+                source_y,
+                frame_width,
+                frame_height,
+                CENTER_X,
+                CENTER_Y,
+                draw_width,
+                draw_height,
+            )
+            update_canvas()
+            now = time.monotonic()
+            if transition_deadline is not None:
+                if now >= transition_deadline:
+                    animation_index = (animation_index + 1) % len(ANIMATIONS)
+                    frame_index = 0
+                    repeat_count = 0
+                    transition_deadline = None
+            elif frame_index == len(frames) - 1:
+                repeat_count += 1
+                if repeat_count == ACTION_REPEAT_COUNT:
+                    transition_deadline = now + ACTION_TRANSITION_DELAY
+                else:
+                    frame_index = 0
             else:
-                frame_index = 0
-        else:
-            frame_index += 1
-        delay(FRAME_INTERVAL)
-
-    close_canvas()
+                frame_index += 1
+            delay(FRAME_INTERVAL)
+    finally:
+        close_canvas()
 
 
 if __name__ == "__main__":
