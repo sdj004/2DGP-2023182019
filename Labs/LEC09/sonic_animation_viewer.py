@@ -22,6 +22,8 @@ CHARACTER_SIZE_FACTOR = 0.5
 CENTER_X = CANVAS_WIDTH // 2
 CENTER_Y = CANVAS_HEIGHT // 2
 FRAME_INTERVAL = 0.1
+MOVEMENT_SPEED = 300
+MOVING_ANIMATION_INDICES = frozenset((1, 3, 4, 5))
 ACTION_REPEAT_COUNT = 5
 ACTION_TRANSITION_DELAY = 1.0
 SHEET_WIDTH = 399
@@ -43,6 +45,23 @@ def get_draw_size(source_width: int, source_height: int) -> tuple[int, int]:
         (CANVAS_HEIGHT - 2 * CANVAS_MARGIN) / source_height,
     )
     return max(1, int(source_width * scale)), max(1, int(source_height * scale))
+
+
+def advance_horizontal_position(
+    current_x: float,
+    moving_right: bool,
+    draw_width: int,
+) -> tuple[float, bool]:
+    left_limit = CANVAS_MARGIN + draw_width / 2
+    right_limit = CANVAS_WIDTH - CANVAS_MARGIN - draw_width / 2
+    direction = 1 if moving_right else -1
+    next_x = current_x + direction * MOVEMENT_SPEED * FRAME_INTERVAL
+
+    if next_x >= right_limit:
+        return right_limit, False
+    if next_x <= left_limit:
+        return left_limit, True
+    return next_x, moving_right
 
 
 FIRST_ACTION_FRAMES = (
@@ -194,6 +213,8 @@ def main():
         frame_index = 0
         repeat_count = 0
         transition_deadline = None
+        character_x = CENTER_X
+        moving_right = True
 
         while running:
             for event in get_events():
@@ -206,16 +227,49 @@ def main():
             _, frames = ANIMATIONS[animation_index]
             source_x, source_y, frame_width, frame_height = frames[frame_index]
             draw_width, draw_height = get_draw_size(frame_width, frame_height)
-            sprite_sheet.clip_draw(
-                source_x,
-                source_y,
-                frame_width,
-                frame_height,
-                CENTER_X,
-                CENTER_Y,
-                draw_width,
-                draw_height,
-            )
+            if animation_index in MOVING_ANIMATION_INDICES:
+                character_x, moving_right = advance_horizontal_position(
+                    character_x,
+                    moving_right,
+                    draw_width,
+                )
+                if moving_right:
+                    sprite_sheet.clip_draw(
+                        source_x,
+                        source_y,
+                        frame_width,
+                        frame_height,
+                        character_x,
+                        CENTER_Y,
+                        draw_width,
+                        draw_height,
+                    )
+                else:
+                    sprite_sheet.clip_composite_draw(
+                        source_x,
+                        source_y,
+                        frame_width,
+                        frame_height,
+                        0,
+                        "h",
+                        character_x,
+                        CENTER_Y,
+                        draw_width,
+                        draw_height,
+                    )
+            else:
+                character_x = CENTER_X
+                moving_right = True
+                sprite_sheet.clip_draw(
+                    source_x,
+                    source_y,
+                    frame_width,
+                    frame_height,
+                    character_x,
+                    CENTER_Y,
+                    draw_width,
+                    draw_height,
+                )
             update_canvas()
             now = time.monotonic()
             if transition_deadline is not None:
@@ -224,6 +278,9 @@ def main():
                     frame_index = 0
                     repeat_count = 0
                     transition_deadline = None
+                    if animation_index in MOVING_ANIMATION_INDICES:
+                        character_x = CENTER_X
+                        moving_right = True
             elif frame_index == len(frames) - 1:
                 repeat_count += 1
                 if repeat_count == ACTION_REPEAT_COUNT:
