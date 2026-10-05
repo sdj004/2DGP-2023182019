@@ -36,6 +36,14 @@ def main():
                 running = False
 
         clear_canvas()
+        sprite_sheet.clip_draw(
+            1,
+            447,
+            29,
+            39,
+            CANVAS_WIDTH // 2,
+            CANVAS_HEIGHT // 2,
+        )
         update_canvas()
 
     close_canvas()
