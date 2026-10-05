@@ -167,6 +167,7 @@ def main():
             CANVAS_HEIGHT // 2,
         )
         update_canvas()
+        frame_index = (frame_index + 1) % len(frames)
         delay(FRAME_INTERVAL)
 
     close_canvas()
