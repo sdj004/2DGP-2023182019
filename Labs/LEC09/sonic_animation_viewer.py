@@ -24,7 +24,19 @@ def frame_rect(x: int, top: int, width: int, height: int) -> Frame:
     return (x, SHEET_HEIGHT - top - height, width, height)
 
 
-FIRST_ACTION_FRAMES = (frame_rect(1, 39, 29, 39),)
+FIRST_ACTION_FRAMES = (
+    frame_rect(1, 39, 29, 39),
+    frame_rect(31, 40, 26, 38),
+    frame_rect(58, 39, 28, 39),
+    frame_rect(86, 40, 30, 38),
+    frame_rect(118, 40, 30, 38),
+    frame_rect(150, 40, 30, 38),
+    frame_rect(182, 40, 29, 38),
+    frame_rect(211, 39, 29, 39),
+    frame_rect(240, 39, 29, 39),
+    frame_rect(270, 45, 24, 32),
+    frame_rect(302, 51, 29, 26),
+)
 
 
 def main():
