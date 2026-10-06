@@ -7,6 +7,8 @@ from pico2d import (
     SDLK_ESCAPE,
     SDLK_LEFT,
     SDLK_RIGHT,
+    SDLK_DOWN,
+    SDLK_UP,
     clear_canvas,
     get_events,
     load_image,
@@ -74,4 +76,8 @@ def handle_events(player):
             elif event.key == SDLK_RIGHT:
                 player.x += MOVE_STEP
                 player.facing_right = True
+            elif event.key == SDLK_UP:
+                player.y += MOVE_STEP
+            elif event.key == SDLK_DOWN:
+                player.y -= MOVE_STEP
     return True
