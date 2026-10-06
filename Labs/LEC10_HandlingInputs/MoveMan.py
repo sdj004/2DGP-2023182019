@@ -10,6 +10,8 @@ from pico2d import (
     SDLK_DOWN,
     SDLK_UP,
     clear_canvas,
+    close_canvas,
+    delay,
     get_events,
     load_image,
     open_canvas,
@@ -105,3 +107,22 @@ def handle_events(player):
                 player.moving = True
     keep_player_on_screen(player)
     return True
+
+
+def main():
+    open_game_window()
+    background, character = load_assets()
+    player = create_player_state()
+    running = True
+
+    while running:
+        render_scene(background, character, player)
+        advance_animation(player)
+        running = handle_events(player)
+        delay(FRAME_INTERVAL)
+
+    close_canvas()
+
+
+if __name__ == "__main__":
+    main()
