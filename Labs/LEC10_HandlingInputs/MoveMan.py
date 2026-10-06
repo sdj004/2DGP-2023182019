@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 from pathlib import Path
 
-from pico2d import load_image, open_canvas
+from pico2d import clear_canvas, load_image, open_canvas, update_canvas
 
 CANVAS_WIDTH = 1280
 CANVAS_HEIGHT = 1024
@@ -34,3 +34,17 @@ def open_game_window():
 
 def create_player_state():
     return PlayerState(CANVAS_WIDTH // 2, CANVAS_HEIGHT // 2)
+
+
+def render_scene(background, character, player):
+    clear_canvas()
+    background.draw(CANVAS_WIDTH // 2, CANVAS_HEIGHT // 2)
+    character.clip_draw(
+        player.frame * SPRITE_FRAME_SIZE,
+        SPRITE_SHEET_HEIGHT - SPRITE_FRAME_SIZE,
+        SPRITE_FRAME_SIZE,
+        SPRITE_FRAME_SIZE,
+        player.x,
+        player.y,
+    )
+    update_canvas()
