@@ -24,6 +24,10 @@ SPRITE_SHEET_WIDTH = 802
 SPRITE_SHEET_HEIGHT = 402
 SPRITE_FRAME_SIZE = 100
 SPRITE_FRAME_COUNT = 8
+IDLE_RIGHT_ROW = 0
+IDLE_LEFT_ROW = 1
+RUN_RIGHT_ROW = 2
+RUN_LEFT_ROW = 3
 MOVE_STEP = 10
 FRAME_INTERVAL = 0.05
 ASSET_DIRECTORY = Path(__file__).resolve().parent
@@ -69,9 +73,9 @@ def render_scene(background, character, player: PlayerState) -> None:
     clear_canvas()
     background.draw(CANVAS_WIDTH // 2, CANVAS_HEIGHT // 2)
     if player.moving:
-        row = 2 if player.facing_right else 3
+        row = RUN_RIGHT_ROW if player.facing_right else RUN_LEFT_ROW
     else:
-        row = 0 if player.facing_right else 1
+        row = IDLE_RIGHT_ROW if player.facing_right else IDLE_LEFT_ROW
     character.clip_draw(
         player.frame * SPRITE_FRAME_SIZE,
         SPRITE_SHEET_HEIGHT - (row + 1) * SPRITE_FRAME_SIZE,
