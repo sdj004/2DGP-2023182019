@@ -5,6 +5,8 @@ from pico2d import (
     SDL_KEYDOWN,
     SDL_QUIT,
     SDLK_ESCAPE,
+    SDLK_LEFT,
+    SDLK_RIGHT,
     clear_canvas,
     get_events,
     load_image,
@@ -59,10 +61,17 @@ def render_scene(background, character, player):
     update_canvas()
 
 
-def handle_events():
+def handle_events(player):
     for event in get_events():
         if event.type == SDL_QUIT:
             return False
         if event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE:
             return False
+        if event.type == SDL_KEYDOWN:
+            if event.key == SDLK_LEFT:
+                player.x -= MOVE_STEP
+                player.facing_right = False
+            elif event.key == SDLK_RIGHT:
+                player.x += MOVE_STEP
+                player.facing_right = True
     return True
