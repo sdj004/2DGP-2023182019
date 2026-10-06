@@ -49,6 +49,12 @@ def create_player_state():
     return PlayerState(CANVAS_WIDTH // 2, CANVAS_HEIGHT // 2)
 
 
+def keep_player_on_screen(player):
+    half_frame = SPRITE_FRAME_SIZE // 2
+    player.x = min(max(player.x, half_frame), CANVAS_WIDTH - half_frame)
+    player.y = min(max(player.y, half_frame), CANVAS_HEIGHT - half_frame)
+
+
 def render_scene(background, character, player):
     clear_canvas()
     background.draw(CANVAS_WIDTH // 2, CANVAS_HEIGHT // 2)
@@ -80,4 +86,5 @@ def handle_events(player):
                 player.y += MOVE_STEP
             elif event.key == SDLK_DOWN:
                 player.y -= MOVE_STEP
+    keep_player_on_screen(player)
     return True
