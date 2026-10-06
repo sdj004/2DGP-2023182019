@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from pico2d import load_image
+from pico2d import load_image, open_canvas
 
 CANVAS_WIDTH = 1280
 CANVAS_HEIGHT = 1024
@@ -17,3 +17,7 @@ def load_assets():
     background = load_image(str(ASSET_DIRECTORY / "TUK_GROUND.png"))
     character = load_image(str(ASSET_DIRECTORY / "animation_sheet.png"))
     return background, character
+
+
+def open_game_window():
+    open_canvas(CANVAS_WIDTH, CANVAS_HEIGHT)
