@@ -48,24 +48,24 @@ def open_game_window():
     open_canvas(CANVAS_WIDTH, CANVAS_HEIGHT)
 
 
-def create_player_state():
+def create_player_state() -> PlayerState:
     return PlayerState(CANVAS_WIDTH // 2, CANVAS_HEIGHT // 2)
 
 
-def keep_player_on_screen(player):
+def keep_player_on_screen(player: PlayerState) -> None:
     half_frame = SPRITE_FRAME_SIZE // 2
     player.x = min(max(player.x, half_frame), CANVAS_WIDTH - half_frame)
     player.y = min(max(player.y, half_frame), CANVAS_HEIGHT - half_frame)
 
 
-def advance_animation(player):
+def advance_animation(player: PlayerState) -> None:
     if player.moving:
         player.frame = (player.frame + 1) % SPRITE_FRAME_COUNT
     else:
         player.frame = 0
 
 
-def render_scene(background, character, player):
+def render_scene(background, character, player: PlayerState) -> None:
     clear_canvas()
     background.draw(CANVAS_WIDTH // 2, CANVAS_HEIGHT // 2)
     if player.moving:
@@ -83,7 +83,7 @@ def render_scene(background, character, player):
     update_canvas()
 
 
-def handle_events(player):
+def handle_events(player: PlayerState) -> bool:
     player.moving = False
     for event in get_events():
         if event.type == SDL_QUIT:
@@ -109,7 +109,7 @@ def handle_events(player):
     return True
 
 
-def main():
+def main() -> None:
     open_game_window()
     try:
         background, character = load_assets()
