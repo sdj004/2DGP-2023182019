@@ -111,17 +111,18 @@ def handle_events(player):
 
 def main():
     open_game_window()
-    background, character = load_assets()
-    player = create_player_state()
-    running = True
+    try:
+        background, character = load_assets()
+        player = create_player_state()
+        running = True
 
-    while running:
-        render_scene(background, character, player)
-        advance_animation(player)
-        running = handle_events(player)
-        delay(FRAME_INTERVAL)
-
-    close_canvas()
+        while running:
+            render_scene(background, character, player)
+            advance_animation(player)
+            running = handle_events(player)
+            delay(FRAME_INTERVAL)
+    finally:
+        close_canvas()
 
 
 if __name__ == "__main__":
