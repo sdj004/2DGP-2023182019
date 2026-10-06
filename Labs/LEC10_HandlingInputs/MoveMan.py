@@ -56,6 +56,13 @@ def keep_player_on_screen(player):
     player.y = min(max(player.y, half_frame), CANVAS_HEIGHT - half_frame)
 
 
+def advance_animation(player):
+    if player.moving:
+        player.frame = (player.frame + 1) % SPRITE_FRAME_COUNT
+    else:
+        player.frame = 0
+
+
 def render_scene(background, character, player):
     clear_canvas()
     background.draw(CANVAS_WIDTH // 2, CANVAS_HEIGHT // 2)
