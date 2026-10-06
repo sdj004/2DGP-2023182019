@@ -1,7 +1,16 @@
 from dataclasses import dataclass
 from pathlib import Path
 
-from pico2d import clear_canvas, load_image, open_canvas, update_canvas
+from pico2d import (
+    SDL_KEYDOWN,
+    SDL_QUIT,
+    SDLK_ESCAPE,
+    clear_canvas,
+    get_events,
+    load_image,
+    open_canvas,
+    update_canvas,
+)
 
 CANVAS_WIDTH = 1280
 CANVAS_HEIGHT = 1024
@@ -48,3 +57,12 @@ def render_scene(background, character, player):
         player.y,
     )
     update_canvas()
+
+
+def handle_events():
+    for event in get_events():
+        if event.type == SDL_QUIT:
+            return False
+        if event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE:
+            return False
+    return True
