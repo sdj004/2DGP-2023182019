@@ -1,12 +1,18 @@
+import os
+os.chdir(os.path.dirname(os.path.abspath(__file__)))
+
 from pico2d import *
 
 
 TUK_WIDTH, TUK_HEIGHT = 1280, 1024
 open_canvas(TUK_WIDTH, TUK_HEIGHT)
-character = load_image('C:\\PythonStudy\\2D_gameProgramming\\2DGP-2023182019\\Labs\\LEC10_HandlingInputs\\animation_sheet.png')
+# character = load_image('C:\\PythonStudy\\2D_gameProgramming\\2DGP-2023182019\\Labs\\LEC10_HandlingInputs\\animation_sheet.png')
 
-tuk_ground = load_image('C:\\PythonStudy\\2D_gameProgramming\\2DGP-2023182019\\Labs\\LEC10_HandlingInputs\\TUK_GROUND.png')
+# tuk_ground = load_image('C:\\PythonStudy\\2D_gameProgramming\\2DGP-2023182019\\Labs\\LEC10_HandlingInputs\\TUK_GROUND.png')
 
+character = load_image("animation_sheet.png")
+
+tuk_ground = load_image("TUK_GROUND.png")
 
 def handle_events():
     global running
